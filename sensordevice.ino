@@ -38,8 +38,8 @@ double temperatureC(int source){
 }
 
 double dB(int source){
-  double ref = 5.0/362.0;
-  double v = analogReadVoltage(source) + 5.0/362.0;
+  double ref = 1.767767/362.0;
+  double v = analogReadVoltage(source) + 1.767767/362.0;
   return 20*log10(v/ref);
 }
 
@@ -167,7 +167,7 @@ void loop(){
     rollingAvgTemp = avgT(rollingAvgTemp, currentTemp);
     delay(50);
     double l = (255/1.8)*log10(abs(currentTemp - rollingAvgTemp)+ 1);
-    double m = (255/1.8)*abs(log10(abs(currentSound - rollingAvgSound)+1)-1.8);
+    double m = (255/1.8)*abs(log10(abs(currentTemp - rollingAvgTemp)+1)-1.8);
     lcd.setRGB((int) l, (int) m, 0);
     lcd.clear();
     lcd.print("Temperature:");
